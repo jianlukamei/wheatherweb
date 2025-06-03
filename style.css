@@ -1,0 +1,31 @@
+ body {
+  background: url(images/body-bg.jpg) top center no-repeat;
+  background-size: contain;
+}
+h3,
+h4,
+h4,
+h5,
+h6,
+ul,
+li,
+a,
+p {
+  font-family: "Nunito";
+}
+
+h1 {
+  margin-top: 0px;
+  font-family: "Nunito", sans-serif;
+}
+h2,
+span {
+  font-family: "Nunito", sans-serif;
+}
+option {
+  font-family: "Nunito", sans-serif;
+}
+ #map svg {
+    width: 100% !important;
+    height: 150% !important;
+ }

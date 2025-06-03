@@ -1,0 +1,1323 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NSDMA</title>
+    <link rel="icon" type="image/png" href="./Public/Images/webicon.png" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- tailwind cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/flowbite@1.6.4/dist/flowbite.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x/dist/cdn.min.js"
+    ></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav x-data="{ open: false }" class="bg-white">
+      <div class="mx-auto sm:px-6 lg:px-8 pb-2 pt-3">
+        <div class="flex items-center justify-between p-4 h-9">
+          <a href="#" class="flex items-center space-x-1 rtl:space-x-reverse">
+            <img
+              src="./Public/Images/nsdmalogo.png"
+              alt="Logo"
+              class="lg:h-[60px] md:h-[50px]"
+            />
+          </a>
+
+          <ul
+            class="hidden md:space-x-2 md:flex lg:flex lg:space-x-4 items-center"
+          >
+            <li>
+              <a
+                href="#"
+                class="text-[#5D9CE6] hover:text-blue-900"
+                aria-current="page"
+                ><i class="fa-brands fa-facebook text-xl"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" class="text-[#5D9CE6] hover:text-blue-900"
+                ><i class="fa-brands fa-linkedin text-xl"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" class="text-black hover:text-blue-900"
+                ><i class="fa-brands fa-x-twitter text-xl"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><span
+                  class="text-[16px] font-[500] text-[#5D9CE6] hover:text-blue-900"
+                  >Follow Us</span
+                ></a
+              >
+            </li>
+          </ul>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button
+              @click="open = !open"
+              class="inline-flex items-center justify-center p-2 rounded-[12px] text-blue-500 hover:text-blue-800 focus:outline-none"
+              aria-label="Toggle navigation"
+            >
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  x-show="!open"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+                <path
+                  x-show="open"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        x-show="open"
+        @click.away="open = false"
+        class="md:hidden bg-white border-t border-gray-200"
+      >
+        <ul class="px-2 pt-2 pb-3 space-y-1">
+          <li>
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium bg-white text-gray-900 hover:bg-gray-200"
+              ><i class="fa-brands fa-facebook text-xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-200"
+              ><i class="fa-brands fa-linkedin text-xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-200"
+              ><i class="fa-brands fa-x-twitter text-xl"></i
+            ></a>
+          </li>
+          <li>
+            <a href="#"
+              ><span class="text-[16px] font-[500] text-[#5D9CE6]"
+                >Follow Us</span
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <article class="w-full">
+      <section
+        id="forecast"
+        class="bg-[#FEB5D8] text-black font-semibold py-3 mb-6"
+      >
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-center gap-4">
+            <!-- District -->
+            <div class="w-full md:w-1/4 relative">
+              <select
+                id="districtListheader"
+                name="district"
+                onchange="return gettehsilheader(this.value);"
+                class="w-full appearance-none border border-gray-300 font-[400] text-[16px] text-[#888888] rounded px-3 pr-16 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <option value="-1">District</option>
+                <option value="-1">Kohima</option>
+                <option value="-1">Dimapur</option>
+                <option value="-1">Longleng</option>
+              </select>
+
+              <!-- Custom arrow icon -->
+              <div
+                class="pointer-events-none absolute inset-y-0 right-4 flex items-center"
+              >
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Tehsil -->
+            <div class="w-full md:w-1/4 relative">
+              <select
+                id="tehsilListheader"
+                name="tehsil"
+                onchange="return getstationheader(this.value);"
+                class="w-full option appearance-none border border-gray-300 font-[400] text-[16px] text-[#888888] rounded px-3 pr-16 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <option value="-1">Tehsil</option>
+                <option value="-1">Dimapur Sadar</option>
+                <option value="-1">Tamlu</option>
+              </select>
+
+              <!-- Custom arrow icon -->
+              <div
+                class="pointer-events-none absolute inset-y-0 right-4 flex items-center"
+              >
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Station -->
+            <div class="w-full md:w-1/4 relative">
+              <select
+                id="stationListheader"
+                name="station"
+                onchange="return getStationData('Y');"
+                class="w-full appearance-none border border-gray-300 font-[400] text-[16px] text-[#888888] rounded px-3 pr-16 py-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
+              >
+                <option value="-1">Station</option>
+                <option value="-1">Tamlu</option>
+                <option value="-1">Dimapur</option>
+              </select>
+
+              <!-- Custom arrow icon -->
+              <div
+                class="pointer-events-none absolute inset-y-0 right-4 flex items-center"
+              >
+                <svg
+                  class="h-4 w-4 text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <section id="home-wraper" class="container pt-10">
+      <div
+        class="flex flex-col md:flex-col lg:flex-row px-4 md:px-0 gap-6 items-center"
+      >
+        <!-- left Panel -->
+        <div class="w-full lg:w-7/12 h-full">
+          <div>
+            <h2
+              class="text-[16px] font-[600] text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-700"
+            >
+              Selected Location
+            </h2>
+            <h3
+              class="text-[12px] font-[400] text-[#494949] mt-1 mb-4 flex items-center gap-1"
+            >
+              <i class="fas fa-map-marker-alt text-blue-600"></i>
+              Nagaland, India
+            </h3>
+          </div>
+
+          <div
+            class="relative w-full h-[300px] md:h-[350px] lg:h-[400px] overflow-hidden rounded-lg"
+          >
+            <!-- Background Image -->
+            <img
+              src="./Public/Images/monsoon.jpg"
+              alt="nagaland"
+              class="object-cover w-full h-full"
+            />
+
+            <!-- Dark overlay -->
+            <div class="absolute inset-0 bg-gray-800 bg-opacity-30"></div>
+
+            <!-- Overlay Content -->
+            <div
+              class="absolute inset-0 flex flex-col justify-between px-6 py-2 text-white z-10"
+            >
+              <!-- Top Content (Temperature Section) -->
+              <div
+                class="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full"
+              >
+                <div class="flex items-center gap-2">
+                  <img
+                    src="./Public/Images/sun.png"
+                    alt="sun"
+                    class="w-20 h-20 pb-4"
+                  />
+                  <div>
+                    <span class="text-[40px] sm:text-[60px] font-[700]"
+                      >32°C</span
+                    >
+                    <p class="font-[700] text-[14px] sm:text-[16px]">
+                      High: 27 Low: 10
+                    </p>
+                  </div>
+                </div>
+                <div class="flex flex-col items-end text-right mt-2 sm:mt-0">
+                  <span class="text-[18px] sm:text-[24px] font-[800]"
+                    >Monday, 07:43 AM</span
+                  >
+                  <div class="flex items-center gap-2 mt-1">
+                    <i class="fas fa-cloud-sun"></i>
+                    <p class="text-[14px] sm:text-[16px] font-[500]">Sunny</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Right Content -->
+        <div class="w-full lg:w-5/12">
+          <!-- Tabs -->
+          <ul id="forecastTabs" class="flex rounded-t-[12px] overflow-hidden">
+            <li class="flex-1">
+              <button
+                class="tab-btn w-full py-3 bg-[#B5D8FE] rounded-t-[12px] text-black text-[16px] font-[700]"
+                data-target="hourly"
+                onclick="activateTab(event)"
+              >
+                Short Term Forecast
+              </button>
+            </li>
+            <li class="flex-1">
+              <button
+                class="tab-btn w-full py-3 text-[#5D9CE6] rounded-t-[12px] text-[16px] font-[700]"
+                data-target="extended"
+                onclick="activateTab(event)"
+              >
+                Extended Forecast
+              </button>
+            </li>
+          </ul>
+
+          <!-- Panels -->
+          <div id="hourly" class="block">
+            <!-- Hourly content… -->
+            <section
+              class="w-full bg-[#B5D8FE] px-5 pt-8 pb-7 rounded-b-[12px]"
+            >
+              <div class="flex flex-col space-y-4">
+                <!-- Day Block -->
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <i
+                      class="fa-solid fa-cloud-showers-heavy text-5xl text-blue-500"
+                    ></i>
+                    <div>
+                      <p class="font-[700] text-black text-[16px]">Tuesday</p>
+                      <p class="text-[14px] text-[#494949] font-[400]">Rainy</p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto justify-center "
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">34°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">22°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Repeat this structure for other days (Wednesday, Thursday) -->
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <i class="fa-solid fa-cloud-sun text-5xl text-blue-600"></i>
+                    <div>
+                      <p class="font-[700] text-black text-[16px]">Wednesday</p>
+                      <p class="text-[14px] text-[#494949] font-normal">
+                        Cloudy
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto justify-center "
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">28°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">12°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <img
+                      src="./Public/Images/sun.png"
+                      alt="sun"
+                      class="w-14 h-14"
+                    />
+                    <div class="flex flex-col">
+                      <span class="font-[700] text-black text-[16px]"
+                        >Thursday</span
+                      >
+                      <span class="text-[14px] text-[#494949] font-normal"
+                        >Sunny</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto  justify-center"
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">26°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">26°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div id="extended" class="hidden">
+            <!-- Extended content… -->
+            <section
+              class="w-full bg-[#B5D8FE] px-5 pt-8 pb-7 rounded-b-[12px]"
+            >
+              <div class="flex flex-col space-y-4">
+                <!-- Day Card Template -->
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <div>
+                      <i
+                        class="fa-solid fa-cloud-showers-heavy text-5xl text-blue-500"
+                      ></i>
+                    </div>
+                    <div>
+                      <p class="font-[700] text-black text-[16px]">Friday</p>
+                      <p class="text-[14px] text-[#494949] font-normal">
+                        Rainy
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-end "
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">34°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">22°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Repeat the same for Saturday and Sunday -->
+
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <div>
+                      <img
+                        src="./Public/Images/sun.png"
+                        alt="sun"
+                        class="w-14 h-14 sm:w-14 sm:h-14"
+                      />
+                    </div>
+                    <div>
+                      <p class="font-[700] text-black text-[16px]">Saturday</p>
+                      <p class="text-[14px] text-[#494949] font-normal">
+                        Sunny
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-end "
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">26°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">26°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="flex flex-wrap items-center bg-white px-4 py-3 rounded-[12px] justify-between"
+                >
+                  <div class="flex items-center gap-3 mb-4 md:mb-0 w-full sm:w-auto">
+                    <div>
+                      <i
+                        class="fa-solid fa-cloud-sun text-5xl text-blue-600"
+                      ></i>
+                    </div>
+                    <div>
+                      <p class="font-[700] text-black text-[16px]">Sunday</p>
+                      <p class="text-[14px] text-[#494949] font-normal">
+                        Cloudy
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-end "
+                  >
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">28°</span>
+                      <i class="text-black fas fa-arrow-up text-[24px]"></i>
+                    </div>
+                    <div
+                      class="bg-[#B5D8FE] text-[#5077E4] rounded-[12px] px-2 py-3 flex items-center space-x-1"
+                    >
+                      <span class="font-[700] text-[24px] text-black">12°</span>
+                      <i class="text-black fas fa-arrow-down text-[24px]"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="p-6 my-3">
+      <div class="max-w-5xl mx-auto">
+        <div class="pb-8 pt-0">
+          <h1
+            class="md:text-[40px] text-[20px] font-[700] flex justify-center items-center md:items-start md:justify-right"
+          >
+            More details on Today’s weather
+          </h1>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
+        >
+          <!-- UV Index -->
+
+          <div
+            x-data="{ uv: 5 }"
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow p-4 w-[270px] h-[200px]"
+          >
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="text-[20px] font-[700] text-[#494949]">UV Index</h4>
+              <img src="./Public/Images/sun.png" alt="sun" class="w-6 h-6" />
+            </div>
+
+            <div class="mt-4 relative">
+              <!-- bind slider to uv -->
+              <input
+                id="uvIndexSlider"
+                x-model="uv"
+                type="range"
+                min="0"
+                max="12"
+                step="1"
+                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              />
+
+              <!-- display the current value -->
+              <span
+                id="uvIndexValue"
+                x-text="uv"
+                class="block w-full text-center text-[40px] font-[600] text-black mb-4"
+                >5</span
+              >
+
+              <div>
+                <div class="flex justify-between mb-1">
+                  <span class="text-[#494949] text-[10px]">0</span
+                  ><span class="text-[#494949] text-[10px]">6</span
+                  ><span class="text-[#494949] text-[10px]">12</span>
+                </div>
+                <div
+                  class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden"
+                >
+                  <div
+                    id="uvIndexBarFill"
+                    class="h-full rounded-full transition-all duration-200"
+                    :class="uv <= 6 ? 'bg-blue-500' : 'bg-orange-500'"
+                    :style="'width:' + (uv / 12 * 100) + '%'"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Humidity -->
+          <div
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow px-6 py-3 w-[270px] h-[200px]"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="text-[20px] font-[700] text-[#494949]">Wind status</h4>
+              <i class="fas fa-wind text-black text-xl"></i>
+            </div>
+
+            <div class="mt-4">
+              <span
+                class="block w-full text-center font-[600] text-black text-[40px] mt-6"
+                >7.70 km/h</span
+              >
+            </div>
+          </div>
+
+          <!-- precipitation -->
+          <div
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow px-6 py-3 w-[270px] h-[200px]"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="text-[20px] font-[700] text-[#494949]">
+                Precipitation
+              </h4>
+
+              <i class="fas fa-cloud-showers-heavy text-[#5D9CE6] text-xl"></i>
+            </div>
+
+            <div class="mt-4">
+              <span
+                class="font-[600] text-black text-[40px] flex justify-center items-center"
+                >1.4 cm</span
+              >
+
+              <!-- Labels + Bars -->
+              <div class="mt-4 mx-auto">
+                <div class="flex justify-between flex-nowrap space-x-2">
+                  <!-- 0 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">0</span>
+                    <div class="w-4 h-1.5 bg-blue-500 rounded-full"></div>
+                  </div>
+
+                  <!-- 10 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">10</span>
+                    <div class="w-4 h-1.5 bg-blue-500 rounded-full"></div>
+                  </div>
+
+                  <!-- 20 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">20</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 30 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">30</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 40 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">40</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 50 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">50</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 60 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">60</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 70 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">70</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 80 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">80</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+
+                  <!-- 90 -->
+                  <div class="flex flex-col items-center space-y-1">
+                    <span class="text-[10px] text-[#494949]">90</span>
+                    <div class="w-4 h-1.5 bg-gray-300 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Humidity -->
+         <div
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow p-4 w-[270px] h-[200px] flex flex-col justify-between"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="text-[20px] font-[700] text-[#494949]">Humidity</h4>
+              <div
+                id="humidityIconWrapper"
+                class="flex items-center justify-center"
+              >
+                <i
+                  id="humidityIcon"
+                  class="fas fa-tint text-xl text-[#5D9CE6]"
+                ></i>
+              </div>
+            </div>
+
+            <div class="flex flex-row justify-between gap-3 items-center ml-[60px]">
+              <div class="flex justify-center">
+                <span
+                  id="humidityValue"
+                  class="text-[40px] font-[600] text-gray-900 inline-block text-center w-[80px]"
+                >
+                  82%
+                </span>
+              </div>
+
+              <div class="ml-4 relative h-30 ">
+                <input
+                  type="range"
+                  id="humiditySlider"
+  
+                  min="0"
+                  max="100"
+                  value="82"
+                  class="appearance-none w-20 h-2 transform -rotate-90 cursor-pointer bg-gray-300 rounded-full"
+                />
+              </div>
+            </div>
+              <span class="">
+                Bad
+                <i class="fa-solid fa-face-frown" style="color: #ffd43b"></i>
+              </span>
+           
+          </div>
+
+          <!-- feels like -->
+          <div
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow px-6 py-3 w-[270px] h-[200px]"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="text-[20px] font-[700] text-[#494949]">Feels Like</h4>
+              <!-- note: changed id here so it doesn’t clash with the bar -->
+              <div
+                id="feelsLikeIconWrapper"
+                class="flex items-center justify-center"
+              >
+                <!-- give the <i> its own id so we can recolor it -->
+                <i
+                  id="feelsLikeIcon"
+                  class="fas fa-thermometer-half text-xl"
+                ></i>
+              </div>
+            </div>
+
+            <!-- Slider (invisible) + Value + Bar -->
+            <div class="mt-4 relative">
+              <input
+                id="feelsLikeSlider"
+                type="range"
+                min="0"
+                max="50"
+                value="30"
+                class="w-full appearance-none absolute inset-0 h-full opacity-0 cursor-pointer"
+              />
+
+              <span
+                id="feelsLikeValue"
+                class="block w-full text-center font-[600] text-[40px] text-black mb-4"
+                >36°</span
+              >
+
+              <div>
+                <div
+                  class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden"
+                >
+                  <!-- renamed to avoid collision with icon wrapper -->
+                  <div
+                    id="feelsLikeBarFill"
+                    class="h-full rounded-full"
+                    style="width: 60%; background-color: #ef4444"
+                  ></div>
+                </div>
+                <div
+                  class="flex justify-between text-[10px] text-[#494949] mb-1"
+                >
+                  <span>0°</span><span>25°</span><span>50°</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chance of Rain -->
+          <div
+            class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] rounded-[12px] shadow px-6 py-3 w-[270px] h-[200px]"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="text-[20px] font-[700] text-[#494949]">
+                Chance of Rain
+              </h4>
+              <div
+                id="chanceIconWrapper"
+                class="flex items-center justify-center"
+              >
+                <i
+                  id="chanceIcon"
+                  class="fas fa-umbrella text-xl text-[#494949]"
+                ></i>
+              </div>
+            </div>
+
+            <span
+              id="chanceValue"
+              class="block w-full text-center font-[600] text-[40px] text-black mt-6"
+              >42%</span
+            >
+
+            <div class="relative mt-4">
+              <div
+                class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden"
+              >
+                <div
+                  id="chanceBarFill"
+                  class="h-full rounded-full"
+                  style="width: 42%; background-color: #3b82f6"
+                ></div>
+              </div>
+              <input
+                id="chanceSlider"
+                type="range"
+                min="0"
+                max="100"
+                value="42"
+                class="absolute inset-x-0 top-0 h-6 w-full opacity-0 cursor-pointer"
+              />
+            </div>
+
+            <div class="flex justify-between text-[10px] text-[#494949]">
+              <span>0%</span><span>25%</span><span>50%</span><span>75%</span
+              ><span>100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Graph Container -->
+    <section
+      class="container mx-auto bg-white px-6 py-10 rounded-[12px] shadow-lg mb-4"
+    >
+      <div class="flex flex-wrap gap-4">
+        <!-- Left Panel: Custom Width -->
+        <div
+          class="w-full lg:w-[62%] bg-[#F9F9FA] p-4 rounded-[16px] shadow-[0px_2px_4px_0px_#00000024]"
+        >
+          <div class="flex items-center mb-4">
+            <h3 class="text-[20px] font-[700]">Temperature Trend</h3>
+            <span class="text-gray-400 p-4">|</span>
+            <div class="flex items-center text-sm space-x-4">
+              <label class="inline-flex items-center space-x-1">
+                <input
+                  type="radio"
+                  name="trend"
+                  value="today"
+                  id="radio-today"
+                  class="form-radio text-black w-3.5 h-3.5"
+                />
+                <p class="font-[700] text-[16px] text-black">Today</p>
+              </label>
+              <label class="inline-flex items-center space-x-1">
+                <input
+                  type="radio"
+                  name="trend"
+                  value="week"
+                  id="radio-week"
+                  class="form-radio text-blue-500 w-3.5 h-3.5"
+                />
+                <p class="font-[700] text-[16px] text-black">Week Avg</p>
+              </label>
+            </div>
+          </div>
+          <div class="relative h-[250px] w-full overflow-hidden">
+            <canvas id="temperatureChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Right Panel: Custom Width -->
+        <div class="sm:w-full lg:w-[35%] md:w-[70%] md:mx-auto mt-1">
+          <div class="grid grid-cols-2 text-center gap-4">
+            <!-- Card 1 -->
+            <div
+              class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] p-2 rounded-[12px] text-center h-[180px] w-[180px] md:w-[200px]"
+            >
+              <p class="text-[20px] text-[#494949] pt-2 pb-7 font-[700]">
+                Precipitation
+              </p>
+              <span class="text-[40px] font-[600] text-black">2%</span>
+            </div>
+
+            <!-- Repeat remaining cards with the same style -->
+            <div
+              class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] p-2 rounded-[12px] text-center h-[180px] w-[180px] md:w-[200px]"
+            >
+              <p class="text-[20px] text-[#494949] pt-2 pb-7 font-[700]">
+                Humidity
+              </p>
+              <span class="text-[40px] font-[600] text-black">87%</span>
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] p-2 rounded-[12px] text-center h-[180px] w-[180px] md:w-[200px]"
+            >
+              <p class="text-[20px] text-[#494949] pt-2 pb-7 font-[700]">
+                Wind
+              </p>
+              <span class="text-[40px] font-[600] text-black">0 km/h</span>
+            </div>
+
+            <div
+              class="bg-gradient-to-r from-[#D8F0FF] via-[#D8F0FF] to-[#B5D8FE] p-2 rounded-[12px] text-center h-[180px] w-[180px] md:w-[200px]"
+            >
+              <p class="text-[20px] text-[#494949] pt-2 pb-2 font-[700]">
+                Sunrise & Sunset
+              </p>
+
+              <div class="flex items-center justify-center space-x-3 py-2">
+                <i class="fas fa-arrow-up text-[20px]"></i>
+                <img
+                  src="./Public/Images/sun.png"
+                  alt="sun"
+                  class="w-10 h-10"
+                />
+                <div class="flex flex-col">
+                  <span class="font-[600] text-[16px]">5:35 AM</span>
+                  <span class="font-[400] text-[#494949] text-[12px]"
+                    >−1m 49s</span
+                  >
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center space-x-3 pt-2">
+                <i class="fas fa-arrow-down text-[20px]"></i>
+                <img
+                  src="./Public/Images/sun.png"
+                  alt="sun"
+                  class="w-10 h-10"
+                />
+                <div class="flex flex-col">
+                  <span class="font-[600] text-[16px]">6:42 PM</span>
+                  <span class="font-[400] text-[#494949] text-[12px]"
+                    >−2m 22s</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="mt-5">
+      <section class="w-full bg-white py-8">
+        <div class="container mx-auto text-center">
+          <!-- Flowbite Carousel -->
+          <div
+            id="default-carousel"
+            class="relative w-full shadow-lg"
+            data-carousel="slide"
+          >
+            <!-- Slides wrapper -->
+            <div class="relative h-[450px] overflow-hidden rounded-lg">
+              <!-- Slide 1 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide1.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 1"
+                />
+              </div>
+              <!-- Slide 2 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide2.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 2"
+                />
+              </div>
+              <!-- Slide 3 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide3.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 3"
+                />
+              </div>
+              <!-- Slide 4 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide4.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 4"
+                />
+              </div>
+              <!-- Slide 5 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide5.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 5"
+                />
+              </div>
+              <!-- Slide 6 -->
+              <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img
+                  src="./Public/Images/slide6.jpg"
+                  class="absolute block w-full h-full object-cover top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  alt="Slide 6"
+                />
+              </div>
+            </div>
+
+            <!-- Slider indicators -->
+            <div
+              class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3"
+            >
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="true"
+                aria-label="Slide 1"
+                data-carousel-slide-to="0"
+              ></button>
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="false"
+                aria-label="Slide 2"
+                data-carousel-slide-to="1"
+              ></button>
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="false"
+                aria-label="Slide 3"
+                data-carousel-slide-to="2"
+              ></button>
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="false"
+                aria-label="Slide 4"
+                data-carousel-slide-to="3"
+              ></button>
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="false"
+                aria-label="Slide 5"
+                data-carousel-slide-to="4"
+              ></button>
+              <button
+                type="button"
+                class="w-3 h-3 rounded-full bg-white/50 hover:bg-white"
+                aria-current="false"
+                aria-label="Slide 6"
+                data-carousel-slide-to="5"
+              ></button>
+            </div>
+
+            <!-- Slider controls -->
+            <button
+              type="button"
+              class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+              data-carousel-prev
+            >
+              <div
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                <p class="sr-only">Previous</p>
+              </div>
+            </button>
+            <button
+              type="button"
+              class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+              data-carousel-next
+            >
+              <div
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50"
+              >
+                <svg
+                  class="w-6 h-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+                <p class="sr-only">Next</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </section>
+    </article>
+
+<!-- hei ha hidden lou mega tha chart ta tat mkge -->
+<article class="">
+  <div class="container mx-auto  rounded-[12px] shadow-lg py-8 px-4 bg-blue-100">
+    <div id="map" class=" h-full max-w-[400px] mx-auto rounded-[12px] overflow-hidden"></div>
+    
+  </div>
+</article>
+
+
+  <footer class="mt-12 bg-gradient-to-t from-[#accbee] to-[#e7f0fd]  lg:bg-[url('./Public/Images/footerbg.png')] lg:bg-cover lg:bg-center " 
+ >
+ 
+      <section
+        class="pb-2 sm:pt-0 lg:pt-32 "
+      >
+        <div class="mx-auto px-4">
+          <div class="flex flex-col lg:flex-row gap-4">
+            <!-- Logo Section: col-7 equivalent -->
+            <div class="w-full lg:w-6/12 lg:ps-4 sm:ps-0 mt-4">
+              <h3 class="text-[24px] font-[700] mb-2">Powered by</h3>
+              <div class="mt-3">
+                <img
+                  src="./Public/Images/logo copy 1.png"
+                  alt="liangtuang_logo"
+                  class="w-1/2"
+                />
+              </div>
+            </div>
+
+            <!-- Right Side: col-5 equivalent -->
+            <div class="w-full lg:w-2/12 mr-4">
+              <!-- Navigation -->
+              <div class="w-full">
+                <h5
+                  class="text-[20px] font-[700] mb-4 lg:text-center sm:text-left"
+                >
+                  Navigation
+                </h5>
+                <ul class="space-y-7">
+                  <li class="flex lg:justify-center sm:justify-left">
+                    <div
+                      class="flex items-center justify-between lg:ps-4 sm:ps-0 w-[130px]"
+                    >
+                      <a href="#" class="text-[16px] font-[700] text-[#494949]"
+                        >Disclaimer</a
+                      ><i class="fa fa-angle-right"></i>
+                    </div>
+                  </li>
+                  <li class="flex lg:justify-center sm:justify-left">
+                    <div
+                      class="flex items-center justify-between lg:ps-4 sm:ps-0 w-[130px]"
+                    >
+                      <a
+                        href="./feedback.html"
+                        class="text-[16px] font-[700] text-[#494949]"
+                        >Feedback</a
+                      ><i class="fa fa-angle-right"></i>
+                    </div>
+                  </li>
+                  <li class="flex lg:justify-center sm:justify-left">
+                    <div
+                      class="flex justify-between items-center lg:ps-4 sm:ps-0 w-[130px]"
+                    >
+                      <a href="#" class="text-[16px] font-[700] text-[#494949]"
+                        >Admin</a
+                      ><i class="fa fa-angle-right"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="lg:w-3/12">
+              <!-- Contact Information -->
+              <div class="">
+                <div class="ps-4">
+                  <h5 class="text-[20px] font-[700] mb-4">
+                    Contact Information
+                  </h5>
+                  <p class="text-[16px] font-[700] text-[#494949]">
+                    Nagaland State Disaster Management <br />
+                    Authority (NSDMA)
+                  </p>
+                </div>
+                <address class="not-italic space-y-2 mt-2 pe-6">
+                  <p class="flex gap-3 text-[16px] font-[700] text-[#494949]">
+                    <i class="fa-solid fa-location-dot text-black"></i>
+                    Kohima-797004, Nagaland
+                  </p>
+                  <p class="flex gap-3 text-[16px] font-[400] text-[#494949]">
+                    <i class="fa-solid fa-phone text-black"></i> 0370-2270050
+                  </p>
+                  <p class="flex gap-3 text-[16px] font-[400] text-[#494949]">
+                    <i class="fa-solid fa-fax text-black"></i> FAX 0370-2271007
+                  </p>
+                  <p class="flex gap-3">
+                    <i class="fa fa-envelope text-black"></i>
+                    <a
+                      href="mailto:sdma.nagaland@gmail.com"
+                      class="hover:text-blue-600 hover:underline text-[16px] font-[400] text-[#494949]"
+                    >
+                      sdma.nagaland@gmail.com
+                    </a>
+                  </p>
+                  <p class="flex gap-3">
+                    <i class="fa fa-globe text-black"></i>
+                    <a
+                      href="http://www.nsdma.gov.in/"
+                      target="_blank"
+                      class="hover:text-blue-600 hover:underline text-[16px] font-[400] text-[#494949]"
+                    >
+                      www.nsdma.gov.in
+                    </a>
+                  </p>
+                </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Copyright -->
+      <section class="bg-[#5D9CE6] text-center py-4">
+        <p class="text-white font-[700] text-[16px]">
+          2025 © All Rights Reserved.
+        </p>
+      </section>
+    </footer>
+
+    <script src="script.js"></script>
+    
+  </body>
+</html>
